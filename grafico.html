@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grafico</title>
+    <style>
+         @import url("https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.css");
+        * {
+          margin: 0;
+          padding: 0;
+          font-family: sans-serif;
+        }
+        .chartMenu {
+          width: 100vw;
+          height: 40px;
+          background: #1A1A1A;
+          color: rgb(26, 79, 255);
+        }
+        .chartMenu p {
+          padding: 10px;
+          font-size: 20px;
+        }
+        .chartCard {
+          width: 100vw;
+          height: calc(100vh - 40px);
+          background: rgba(26, 99, 255, 0.2);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .chartBox {
+          width: 700px;
+          padding: 20px;
+          border-radius: 20px;
+          border: solid 3px rgb(26, 79, 255);
+          background: white;
+        }
+      </style>
+</head>
+<body>
+
+    <div class="chartMenu">
+        <p>Grafico</p>
+      </div>
+      <div class="chartCard">
+        <div class="chartBox">
+          <canvas id="myChart"></canvas>
+        </div>
+      </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.js"></script>
+    <script src="app.js"></script>
+    
+    <script>
+        localStorage.setItem('despesa', ['mes'])
+        
+        console.log(localStorage.getItem('despesa'))
+        var despesa= localStorage.getItem('despesa')
+        //console.table(despesa.split(','))
+
+        let splitdata = despesa
+        if(despesa){
+            splitdata = despesa.split(',')
+        }
+
+        var ctx = document.getElementById('myChart').getContext('2d')
+
+        var chart = new Chart(ctx,{
+            type:'bar',
+            data:{
+                labels: ['Jan', 'Fev','Março','Abril','Maio','Jun','Jul','Agosto','Set','Out','Nov','Dez'],
+                datasets:[{
+                    label:'Gastos por Mês',
+                    backgroundColor:'rgb(26, 79, 255)',
+                    borderColor:'rgb(26, 79, 255)',
+                    data:[0,10,5,2,10,30,45]
+                    //data: splitdata,
+                }]
+            },
+
+            options:{}
+        })
+
+    </script>
+
+</body>
+</html>
